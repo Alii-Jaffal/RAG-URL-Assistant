@@ -1,64 +1,74 @@
-# 🦙 TinyLlama RAG Bot
+# 🌐 URL-Based RAG Q&A Assistant (Gemini 2.5 Flash)
 
-A simple Retrieval-Augmented Generation (RAG) chatbot I built using TinyLlama and LangChain.  
-The bot can read content from URLs you provide, store it in a vector database, and answer your questions based on that content. I made it mainly for learning and experimenting with RAG and small LLMs.
+A simple project that lets you enter one or more URLs, extract clean text from each page, store it in a vector database, and ask questions about the content using **Gemini 2.5 Flash**.  
+This project uses **LangChain**, **FAISS**, and **Gradio** to build a smooth RAG workflow.
 
----
 
-## Features
+## 📸 Project Screenshots
 
-- Process multiple URLs at once
-- Ask questions and get answers from the content of the URLs
-- Gradio interface with a soft theme, easy to use
-- Works on GPU if available, otherwise falls back to CPU
-- Uses FAISS for vector storage and BAAI/bge-small-en-v1.5 embeddings
-- Uses TinyLlama-1.1B-Chat as the LLM for answering questions
+### 🖼️ Screenshot 1 — Main Interface  
+*(replace with your own image)*  
+![Screenshot 1](images/screenshot1.png)
 
----
+### 🖼️ Screenshot 2 — Answer Example  
+*(replace with your own image)*  
+![Screenshot 2](images/screenshot2.png)
 
-## How It Works
 
-Process URLs: Enter one or more URLs separated by commas. The bot loads the web pages and splits them into chunks for embedding.
+## 🚀 Features
 
-Embeddings & Vector Store: Each chunk is converted into embeddings using HuggingFace BGE embeddings. FAISS stores these vectors so the bot can quickly search for relevant information.
+- Enter one or more URLs  
+- Automatic extraction and cleaning of webpage text  
+- Chunking and embedding using `text-embedding-004`  
+- FAISS vector store for fast similarity search  
+- Gemini 2.5 Flash for natural and high-quality answers  
+- Clean and modern Gradio interface  
 
-Ask Questions: When you ask a question, the bot retrieves the most relevant chunks from FAISS and uses TinyLlama to generate an answer.
 
-Display Answer: The Gradio interface shows the answer and optionally any sources retrieved.
+## 🧠 How It Works
 
----
+1. You enter URLs (one per line)  
+2. The system fetches and cleans the HTML  
+3. Text is split into small chunks  
+4. Each chunk is embedded  
+5. Stored inside a FAISS vector database  
+6. When you ask a question, the most relevant chunks are retrieved  
+7. Gemini answers based only on the retrieved context  
 
-## How to Run
 
-Clone the repo:
-git clone https://github.com/your-username/TinyLlama-RAG-Bot.git
-cd TinyLlama-RAG-Bot
+## 📦 Installation
 
-Install dependencies:
+### 1. Install dependencies
 pip install -r requirements.txt
 
-Run the app:
-python main.py
+### 2. Add your Google Gemini API key
+**Linux/macOS**
+export GEMINI_API_KEY="YOUR_KEY"
 
-Open the Gradio interface in your browser:
-Enter URLs (comma-separated)
-Click Process URLs
-Ask your question in the textbox and click Ask
+**Windows PowerShell**powershell
+setx GEMINI_API_KEY "YOUR_KEY"
 
----
 
-## Notes
 
-Works best with English web pages.  
-Automatically uses GPU if available for faster processing.  
-TinyLlama is a smaller model, so it might not summarize very long pages perfectly.  
-You can adjust k in the retriever or chunk size to improve answers.
+## 📂 Project Structure
 
----
+.
+├── app.py
+├── app.ipynb
+├── requirements.txt
+├── README.md
+└── images/
+    ├── screenshot1.png
+    └── screenshot2.png
 
-## About Me
 
-I built this project to experiment with LLMs, RAG, and vector databases.  
-It's simple, easy to run, and meant for learning and personal use.
+## 📝 Notes
 
-Enjoy! 😎
+- Works best on clean, text-rich websites  
+- Scanned/graphical pages will not extract properly  
+- You can extend this project to support PDFs, YouTube transcripts, etc.  
+
+
+## ⭐ Enjoy
+
+If you like the project, feel free to star the repo or build on it!
